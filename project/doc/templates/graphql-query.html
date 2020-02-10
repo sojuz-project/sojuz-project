@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sojuz global CSS documentation</title>
+<link rel="stylesheet" type="text/css" href="../doc.css">
+</head>
+<body>
+	<div id="header">
+		<div>
+			<img id="logo" src="../../../assets/sojuz-project-horizontal.png" />
+		</div>
+		<div>
+			<p>Frontend manual</p>
+		</div>
+	</div>
+	<div id="main-menu">
+			<a class="active" href="../!frontend-modules-manual/frontend-modulesl.html">Frontend modules</a>
+			<a href="../../css-doc/globals/!global-css-manual/global-css-manual.html">Global CSS guideline</a>
+		</nav>
+	</div>
+	<div id="body-wrapper">
+	<div id="sidebar">
+		<nav>
+			<ul>
+				<li>
+					<a href="../!frontend-modules-manual/frontend-modulesl.html">Main info</a>
+				</li>
+				<li>
+					<a href="../bookmark/Bookmark.html">bookmark</a>
+				</li>
+				<li>
+					<a href="../cart/AddToCart.html">cart</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<div id="body">	
+	<h2>GraphQL query warpper Block (gutenberg)</h2>
+	<h3>Products list</h3>
+	<pre>
+query posts(
+	$post_type: String! = "product",
+	$limit: Int = 12,
+	$page: Int = 0,
+	$term_slug: [String] = []
+) {
+	nq:search( 
+		post_type: $post_type, 
+		limit: $limit, 
+		skip: $page,
+		terms: $term_slug
+	) {
+		id: ID
+		post_title
+		post_name
+		categories
+		thumbnail
+		post_meta
+	}
+}
+	</pre>
+
+	<h3>Products categories list</h3>
+	<pre>
+query Categories(
+	$name: String = "product_cat"
+) {
+	nq: categories(
+		name: $name
+	) {
+    	name
+    	slug
+	}
+}
+	</pre>
+	<h3>Single product</h3>
+	<pre>
+query posts(
+	$post_name: String
+) {
+	nq: queryPost(
+		post_name: $post_name,
+		parent:0
+	) {
+		id:ID
+		post_title
+		post_content
+		post_name
+		categories
+		thumbnail
+		post_meta(
+			fields: [
+				_price, 
+				_crosssell_ids, 
+				_product_image_gallery,
+				_product_attributes
+			]
+		)
+	}
+}
+	</pre>
+
+	<hr>	
+	<section><section>
+
+	</div>
+	</div>
+</body>
+</html>

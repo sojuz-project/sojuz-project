@@ -1,0 +1,49 @@
+version: "3.3"
+
+services:
+  traefik:
+    image: traefik:1.7
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - web
+    volumes:
+      - ./traefik/development.toml:/traefik.toml
+      - ./traefik/ssl:/ssl
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.frontend.rule=PathPrefixStrip:/router"
+      - "traefik.frontend.auth.basic=sojuz:$$2y$$05$$dtSK0Lm6R0LrSKfMEYVGD.9tY/Od6R.f7TfJE2M6VIpQBK25xre3G"
+      - "traefik.port=8080"
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.passHostHeader=true"
+      - "traefik.frontend.entryPoints=http,https"
+      - "traefik.tags=traefiks"
+  documentation:
+    image: docimg
+    build:
+      context: ./Docker
+      dockerfile: ./documentation.Dockerfile
+    working_dir: "/app"
+    networks:
+      - web
+    volumes:
+      - ./project:/app
+    restart: unless-stopped
+    command: bash -c "yarn && yarn start"
+    environment:
+      - "SOJUZ_PROJECT=${SOJUZ_PROJECT}"
+    labels:
+      - "traefik.front.frontend.rule=PathPrefixStrip:/sojuz-project"
+      - "traefik.port=8010"
+      - "traefik.enable=true"
+      - "traefik.passHostHeader=true"
+      - "traefik.frontend.entryPoints=http,https"
+      - "traefik.docker.network=web"
+      - "traefik.tags=${HOST}"
+
+networks:
+  web:

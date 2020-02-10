@@ -1,0 +1,37 @@
+
+<body>
+  <div>
+    <main>
+    <div class="is-style-cover-10 align-full focal-active block corecover" style="">
+      <div class="overlay has-secondary-background-color" style="opacity:0.4;"></div> <div class="block corecolumns is-style-default mobile-nocolumns mobile-columns-reverse align-default"><div class="block corecolumn v-align-center columns-defalult"><figure class="align-center custom block coreimage"><!----> <img width="240px" height="480px" src="https://docker.local/backend/wp-content/uploads/2019/12/mobile_sojuz_logo.svg"></figure><div class="block coreparagraph">
+      <p class="has-text-color has-text-align-center has-small-font-size has-white-color"><a href="https://github.com">Source code is avilable on GitHub</a></p>
+      </div></div><div class="block corecolumn v-align-center columns-defalult"><div class="block coreparagraph">
+      <p class="has-small-font-size">Sojuz Zero Theme</p>
+      </div>
+      <div class="block coreparagraph">
+          <p class="has-huge-font-size"><strong>Feel full mobile experience on The  WordPress Theme </strong></p>
+      </div><div style="height:40px;"></div><div class="wp-block-button is-style-fill has-text-align-left block corebutton"><!----> <a href="/themes/" class="has-white-color has-secondary-background-color"><strong>Try for free!</strong></a></div></div></div><div class="block coreparagraph">
+      <p></p>
+      </div>
+    </div>
+    </main>
+  </div>
+  <div id="css_files"></div>
+</body>
+<script>
+window.addEventListener('message', function(event) {
+    const css_files = document.getElementById("css_files");
+    while (css_files.firstChild) {
+      css_files.removeChild(css_files.firstChild);
+    }
+    JSON.parse(event.data.value).map((el)=>{
+      if(el.selected){
+        const node = document.createElement("link");
+        node.setAttribute("rel", "stylesheet");
+        node.setAttribute("type", "text/css");
+        node.setAttribute("href", "../../../."+el.file);
+        css_files.appendChild(node)
+      }
+    })
+}, false);  
+</script>
