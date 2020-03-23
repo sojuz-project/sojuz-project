@@ -3,10 +3,8 @@
  * @param get_project [this]
  *
  */
-window.get_project = function(t) {
-  setAppState('get_project');
-  console.log(`/sojuz-project/${'get_project'}?project=${t.dataset.name}`);
-  fetch(`/sojuz-project/${'get_project'}?project=${t.dataset.name}`, {
+window.get_project = function(project) {
+  fetch(`/sojuz-project/${'get_project'}?project=${project}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',

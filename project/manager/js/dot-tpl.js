@@ -10,8 +10,8 @@ var work_menu_tpl = `
     <table class="doc-table">
       {{~it:item:index}}
         <tr>
-          <td onclick="{{=item.action}}(this)" data-name="{{=item.name}}">
-            <a class="link" href="#">
+          <td onclick="app_action('{{=item.action}}',this)" data-name="{{=item.name}}">
+            <a class="link">
               <img class="doc-ico" src="/sojuz-project/manager/assets/{{=item.ico}}.svg">
               <span>{{=item.name}}</span>
               {{? item.current}}
@@ -68,12 +68,24 @@ var css_menu_tpl = `
   <ul>
     {{~it:item:index}}
       <li {{? item.active}}class="active"{{?}}>
-        <a class="menu_item" data-group="{{=item.group}}" data-name="{{=item.name}}" href="#header" onclick="load_page('css-doc/globals/','{{=item.group}}','{{=item.name}}')">
+        <a class="menu_item" data-group="{{=item.group}}" data-name="{{=item.name}}" onclick="app_action('css_guideline',this)">
           <img class="doc-ico" src="/sojuz-project/manager/assets/folder.svg">{{=item.group}}
         </a>
         {{? item.selected_in_group}}<span><img class="doc-ico" src="/sojuz-project/manager/assets/check.svg"></span>{{?}}
       </li>
     {{~}}
+
+    <li>
+      <a class="menu_item"  href="#header" onclick="console.log(app_atrs.project); rebuild_css_collection(app_atrs.project)">
+        <img class="doc-ico" src="/sojuz-project/manager/assets/trash-2.svg">Rebuild css collection
+      </a>    
+    </li>
+    
+    <li>
+      <a class="menu_item"  href="#header" onclick="clear_css_collection(app_atrs.project)">
+        <img class="doc-ico" src="/sojuz-project/manager/assets/trash-2.svg">Clear css collection
+      </a>    
+    </li>
   </ul>
 </nav>  
 `;
@@ -83,11 +95,13 @@ var css_submenu_tpl = `
   <ul style="display:flex">
     {{~it:item:index}}
       <li {{? item.subactive}}class="active"{{?}}>
-        <a  class="sub_menu_item" data-group="{{=item.group}}" data-name="{{=item.name}}" href="#" onclick="load_page('css-doc/globals/','{{=item.group}}','{{=item.name}}')">{{=item.name}}</a>
-        <input onchange="global_check(event)" name="{{=item.group}}-{{=item.name}}" value="{{=item.file}}" {{? item.selected}}checked{{?}} type="checkbox">
+        <a  class="sub_menu_item" data-group="{{=item.group}}" data-name="{{=item.name}}" onclick="app_action('css_guideline',this); close_columns()">{{=item.name}}</a>
+        {{? item.is_checked}}
+          <input onchange="global_check(event)" name="{{=item.group}}-{{=item.name}}" value="{{=item.file}}" {{? item.selected}}checked{{?}} type="checkbox">
+        {{?}}
       </li>
     {{~}}
-    <li onclick="add_new_css('{{=item.group}}')"><a href="#">+</a> </li>
+    <li onclick="add_new_css('{{=item.group}}');"><a href="#">+</a> </li>
   </ul>
 </nav>
 `;

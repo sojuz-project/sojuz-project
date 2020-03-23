@@ -15,6 +15,6 @@
     "nodemon": "^2.0.2"
   },
   "scripts": {
-    "start": "nodemon --ext js,html,css --watch . index.js"
+    "start": "nodemon --ignore 'projects_archive/*' --ext js,css --watch . index.js"
   }
 }

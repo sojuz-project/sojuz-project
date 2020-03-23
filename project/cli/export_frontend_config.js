@@ -47,7 +47,7 @@ walk(dir).map((path) => {
 let readGuardian = false;
 fs.readFileSync(output_dir + 'nuxt.css.js', 'utf8')
   .split(/\r?\n/)
-  // eslint-disable-next-line complexity
+  
   .forEach(function(line) {
     // ========================================
     search = line.search('files list start tag');

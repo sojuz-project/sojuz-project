@@ -1,9 +1,7 @@
 function delete_project() {
-  setAppState('delete_project');
-  const project = localStorage.getItem('project');
   event.preventDefault();
   event.stopPropagation();
-  fetch(`/sojuz-project/${'delete_project'}?project=${project}`, {
+  fetch(`/sojuz-project/${'delete_project'}?project=${app_atrs.project}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -12,10 +10,8 @@ function delete_project() {
   }).then(
     onStreamRes(
       () => {
-        msg(`delete: ${project}`, 'success');
-        if (localStorage.getItem('project') == project) {
-          localStorage.removeItem('project');
-        }
+        msg(`project: ${app_atrs.project} was deleted`, 'success');
+        app_atrs.project = undefined;
         list_projects('');
       },
       (el) => {

@@ -1,5 +1,4 @@
 window.copy_project = function() {
-  setAppState('copy_project');
   fetch(`/sojuz-project/${'list_projects'}`, {
     method: 'GET',
     headers: {

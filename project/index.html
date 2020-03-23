@@ -3,14 +3,14 @@
 <head>
   <title>Sojuz global CSS documentation</title>
   <link rel="stylesheet" type="text/css" href="/sojuz-project/doc/doc.css">
-  <!-- <link rel="stylesheet" type="text/css" href="%%dynamic_css%%"> -->
+  <link id="doc_page_css" rel="stylesheet" type="text/css" href="">
 <body>
   <div id="main-wrapper">
     <div id="page-wrapper">
       <div id="header">
         <div class="logo">
           <div>
-           <img id="logo" onclick="home_page(this)" src="/sojuz-project/doc/assets/sojuz-project-horizontal.png" />
+           <img id="logo" onclick="app_action('home_page',this)" src="/sojuz-project/doc/assets/sojuz-project-horizontal.png" />
           </div>
           <div>
             <p>Mission controll panel</p>
@@ -18,7 +18,7 @@
         </div>
         <img id="toggle-columns" class="columns" onclick="resize_columns()" src="/sojuz-project/manager/assets/columns.svg">
         <div id="menu-ico" class="menu-ico" >
-          <div class="hamburger" onclick="list_projects()">
+          <div class="hamburger" onclick="open_work();">
             <div></div>
           </div>
           <img class="hamburger-back" onclick="close_work();" src="/sojuz-project/manager/assets/menu-x.svg">
@@ -27,11 +27,11 @@
       </div>
       <div id="main-menu">
         <nav>
-          <a href="#" class="active" id="home_page" onclick="home_page()">Home page</a>
-          <a href="#" id="css_guideline" onclick="css_guideline()">Global CSS guideline</a>
-          <a href="#" id="gutenberg_blocks" onclick="gutenberg_blocks()">Gutenberg blocks</a>
-          <a href="#" id="frontend_modules" onclick="frontend_modules()">Frontend modules</a>
-          <a href="#">For creators</a>
+          <a id="home_page" onclick="app_action('home_page',this)">Home page</a>
+          <a id="css_guideline" onclick="app_action('css_guideline',this)" data-group="index" data-name="css_guideline">Global CSS guideline</a>
+          <a id="gutenberg_blocks" onclick="app_action('gutenberg_blocks',this)">Gutenberg blocks</a>
+          <a id="frontend_modules"  onclick="app_action('frontend_modules',this)">Frontend modules</a>
+          <a>For creators</a>
         </nav>
       </div>
       <div id="body-wrapper">
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <div id="work-wrapper" onmouseenter="shade_left()" onmouseleave="unshade_left()">
+    <div id="work-wrapper" >
       <div id="work-wrapper-header">
         <div id="work-project">
           <span>Project:</span> <span id="project-name"></span>
@@ -81,11 +81,16 @@
   }
 </script>
 <script src="/sojuz-project/manager/js/dot-tpl.js"></script>
-<script src="/sojuz-project/manager/js/states.js"></script>
 <script src="/sojuz-project/manager/js/app/app_build_preview.js"></script>
+<script src="/sojuz-project/manager/js/app/app_clear_css_collection.js"></script>
 <script src="/sojuz-project/manager/js/app/app_copy_project.js"></script>
+<script src="/sojuz-project/manager/js/app/app_clone_project.js"></script>
+<script src="/sojuz-project/manager/js/app/app_db_local_to_project.js"></script>
+<script src="/sojuz-project/manager/js/app/app_db_project_to_local.js"></script>
+<script src="/sojuz-project/manager/js/app/app_db_delete_revisions.js"></script>
 <script src="/sojuz-project/manager/js/app/app_delete_project.js"></script>
 <script src="/sojuz-project/manager/js/app/app_get_project.js"></script>
+<script src="/sojuz-project/manager/js/app/app_get_css_guideline.js"></script>
 <script src="/sojuz-project/manager/js/app/app_get_css_collection.js"></script>
 <script src="/sojuz-project/manager/js/app/app_github_projects_menu.js"></script>
 <script src="/sojuz-project/manager/js/app/app_list_projects.js"></script>
@@ -93,11 +98,14 @@
 <script src="/sojuz-project/manager/js/app/app_project_menu.js"></script>
 <script src="/sojuz-project/manager/js/app/app_project_frontend_menu.js"></script>
 <script src="/sojuz-project/manager/js/app/app_project_backend_menu.js"></script>
+<script src="/sojuz-project/manager/js/app/app_read_page.js"></script>
+<script src="/sojuz-project/manager/js/app/app_rebuild_css_collection.js"></script>
 <script src="/sojuz-project/manager/js/app/app_save_project.js"></script>
 <script src="/sojuz-project/manager/js/app/app_set_project.js"></script>
+<script src="/sojuz-project/manager/js/app/app_sync_css.js"></script>
 <script src="/sojuz-project/manager/js/app/app_set_css_collection.js"></script>
 <script src="/sojuz-project/manager/js/app/app_customize_css.js"></script>
 <script src="/sojuz-project/manager/js/app.js"></script>
 <script src="/sojuz-project/manager/js/app_document.js"></script>
-<script>run_stated_action()</script>
+<script src="/sojuz-project/manager/js/states.js"></script>
 </html>

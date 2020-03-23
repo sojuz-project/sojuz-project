@@ -4,6 +4,7 @@ module.exports = {
     const responce = fs.readdirSync(pDir).filter(function(file) {
       return fs.statSync(pDir + '/' + file).isDirectory();
     });
+    console.log(responce, typeof responce);
     return responce;
   },
 };

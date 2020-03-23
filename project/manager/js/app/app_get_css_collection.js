@@ -3,26 +3,10 @@
  * @param get_project [this]
  *
  */
-window.get_css_collection = function(project) {
-  if (!project) {
-    msg(`Project not found`, 'success');
+window.get_css_collection = function() {
+  console.log('get css');
+  if (!app_atrs.project) {
+    msg(`get_css_collection error: project not exist`, 'success');
   }
-  console.log(`/sojuz-project/${'get_css_collection'}?project=${project}`);
-  fetch(`/sojuz-project/${'get_css_collection'}?project=${project}`, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-  }).then(
-    onStreamRes(
-      (data) => {},
-      (el) => {
-        css_collection = JSON.parse(el);
-      },
-      (err) => {
-        console.log('Error', err);
-      }
-    )
-  );
+  console.log('get_css_collection');
 };

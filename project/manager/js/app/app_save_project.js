@@ -1,5 +1,5 @@
 // Save project View
-window.save_project = function(t) {
+window.save_project = function(project) {
   document.getElementById('work-description').innerHTML = 'Save project';
 
   // document.getElementById('popup').classList.add('open');

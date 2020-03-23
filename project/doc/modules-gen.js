@@ -144,7 +144,7 @@ walk(dir).forEach(function(file) {
   var search = '';
   fs.readFileSync(file, 'utf8')
     .split(/\r?\n/)
-    // eslint-disable-next-line complexity
+    
     .forEach(function(line) {
       // ========================================
       search = line.search('SOJUZ DOC');
